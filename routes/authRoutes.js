@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
         // check database for a user with the email entered in the form
         const useremail = await db.User.findOne({ where: { email: email } });
         const usersname = await db.User.findOne({ where: {username: username } });
-        console.log(req.body);
+        
 
         if (useremail) {
             // if user already in database, send error
