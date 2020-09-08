@@ -5,6 +5,7 @@ const passwordTwoInputReg = document.querySelector("#passwordTwoInputReg");
 const submitBtnReg = document.querySelector("#submitBtnReg");
 const rowAlertReg = document.querySelector(".alertAppendReg");
 const divAlertReg = document.createElement("div");
+const usernameReg = document.querySelector("#usernameInputReg");
 
 // Function to handle the form
 const handleSubmit = async (e) => {
@@ -12,13 +13,14 @@ const handleSubmit = async (e) => {
     // Create Object to be used on the Regiter request with information from the form
     divAlertReg.value = "";
     const userObj = {
+        username: usernameReg.value,
         email: emailInputReg.value,
         password: passwordInputReg.value,
         passwordTwo: passwordTwoInputReg.value
     }
     // Create Object to be used on the log-in request after successful registration with information from the form
     const loginObj = {
-        email: emailInputReg.value,
+        username: usernameReg.value,
         password: passwordInputReg.value
     }
     // Request to server to Register passing the User information (userObj)

@@ -1,4 +1,4 @@
-const emailInput = document.querySelector("#emailInput");
+const usernameInput = document.querySelector("#usernameInput");
 const passwordInput = document.querySelector("#passwordInput");
 const submitBtn = document.querySelector("#submitBtn");
 const rowAlert = document.querySelector(".alertAppend");
@@ -9,7 +9,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     // Create Object with information from the form
     const userObj = {
-        email: emailInput.value,
+        username: usernameInput.value,
         password: passwordInput.value
     }
     // Request to server to log-in passing the User information (userObj)

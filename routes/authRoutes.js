@@ -9,9 +9,9 @@ const auth = require("../middleware/auth");
 router.post("/register", async (req, res) => {
 
     try {
-        const { email, password, passwordTwo } = req.body;
+        const { username, email, password, passwordTwo } = req.body;
         // check if there are any empty fields
-        if (!email || !password || !passwordTwo) return res.status(400).json({ message: "Please fill all fields" });
+        if (!username || !email || !password || !passwordTwo) return res.status(400).json({ message: "Please fill all fields" });
         // check for correct email format
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (reg.test(email) == false) return res.status(400).json({ message: "Invalid email format" });
@@ -20,26 +20,32 @@ router.post("/register", async (req, res) => {
         // for both passwords to be the same
         if (password !== passwordTwo) return res.status(400).json({ message: "Passwords don't match" });
         // check database for a user with the email entered in the form
-        const user = await db.User.findOne({ where: { email: email } })
+        const useremail = await db.User.findOne({ where: { email: email } });
+        const usersname = await db.User.findOne({ where: {username: username } });
+        console.log(req.body);
 
-        if (user) {
+        if (useremail) {
             // if user already in database, send error
-            res.status(400).json({ message: "User already Registered. Please, LogIn" })
-        } else {
+            res.status(400).json({ message: "Email address already exists." })
+        }else if(usersname){
+            res.status(400).json({ message: "Username already exists."})
+        }else {
             // Using bcrypt to hash the password
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(password, salt, function (err, hash) {
                     if (err) throw err;
                     // save hashed password into dtaa base
                     db.User.create({
+                        username,
                         email,
                         password: hash
                     })
                         .then(data => {
-                            const { id, email } = data;
+                            const { id, email, username } = data;
                             res.json({
                                 id,
-                                email
+                                email,
+                                username
                             });
                         })
                         .catch(err => console.log(err));
@@ -55,10 +61,10 @@ router.post("/register", async (req, res) => {
 // Route: /auth/register
 router.post("/login", (req, res, next) => {
 
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     // check if there are any empty fields
-    if (email === "" || password === "") return res.status(400).json({ message: "Please fill all fields" });
+    if (username === "" || password === "") return res.status(400).json({ message: "Please fill all fields" });
     // passport Authentication using the "Local strategy" inside the "config" folder config/passport.js."
     // passport check the email and password and returns a function passing three arguments (err, info, user)
     passport.authenticate('local', (err, user, info) => {
@@ -80,8 +86,8 @@ router.get("/user", auth, async (req, res) => {
     try {
         const userdId = req.session.passport.user;
         const user = await db.User.findOne({ where: { id: userdId } })
-        const { id, email } = user;
-        res.json({ id, email });
+        const { id, email, username } = user;
+        res.json({ id, email, username });
     } catch (err) {
         if (err) console.log(err)
     }

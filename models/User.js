@@ -9,6 +9,11 @@ module.exports = function (sequelize, DataTypes) {
                 isEmail: true
             }
         },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            uniqie: true,
+        },
         password: {
             type: DataTypes.STRING,
             allowNull: false
