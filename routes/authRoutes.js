@@ -21,6 +21,7 @@ router.post("/register", async (req, res) => {
         if (password !== passwordTwo) return res.status(400).json({ message: "Passwords don't match" });
         // check database for a user with the email entered in the form
         const useremail = await db.User.findOne({ where: { email: email } });
+        // Check database for a user with the username entered.
         const usersname = await db.User.findOne({ where: {username: username } });
         
 
