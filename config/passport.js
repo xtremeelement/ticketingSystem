@@ -8,7 +8,7 @@ passport.use(new LocalStrategy({ usernameField: 'username' }, (username, passwor
     // check for user in database
     db.User.findOne({
         where: {
-            username: username
+            username
         }
     }).then(user => {
         // if user was not found return false for user and pass an error message
