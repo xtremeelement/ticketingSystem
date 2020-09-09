@@ -98,7 +98,7 @@ router.get("/logout", (req, res) => {
     // Log out user
     req.logout();
     // redirect to main page
-    res.redirect('/user/login');
+    res.redirect('/');
 });
 
 module.exports = router;

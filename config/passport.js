@@ -33,7 +33,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(async function (id, done) {
-    const user = await db.User.findAll({where:{ id: id} })
+    const user = await db.User.findAll({where:{ id } })
     done(null, user);
 });
 
