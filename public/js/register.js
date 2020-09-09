@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
             body: JSON.stringify(loginObj)
         })
         // redirect to Main page (Authorize)
-        window.location.href = "/"
+        window.location.href = "/dashboard"
     }
 }
 // Click event to submit the form
