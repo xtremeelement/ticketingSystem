@@ -7,6 +7,7 @@ const auth = require("../middleware/auth");
 router.get("/dashboard", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/dashboard.html")));
 router.get("/user/page2", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/page2.html")));
 router.get("/user/profile", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/profile.html")));
+router.get("/user/createticket", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/createTicket.html")));
 
 // login and register forms view
 router.get("/", (req, res) => res.sendFile(path.join(__dirname, "../public/login.html")));
