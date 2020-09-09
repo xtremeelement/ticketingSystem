@@ -1,12 +1,9 @@
-// const router = require("express").Router();
+const router = require("express").Router();
+const auth = require("../middleware/auth");
 
-// use this file to code your API routes
 
-// All routes start with: /api
+router.get("/example", auth, (req, res) => {
+    //your code here
+})
 
-// Route: /api/example
-// i.e: router.get("/example", (req, res) => {
-//     //your code here
-// })
-
-// module.exports = router;
+module.exports = router;
