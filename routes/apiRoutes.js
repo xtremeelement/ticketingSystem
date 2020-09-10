@@ -32,5 +32,17 @@ router.post("/createticket", auth, (req, res) => {
     }
 })
 
+router.get("/ticketdetails/:ticket_number", auth, async (req,res) => {
+    console.log(req.params);
+    const{ticket_number} = req.params;
+    if(!ticket_number){
+        res.status(400).send({message: "no ticket number provided"});
+    }else{
+        const ticket = await db.Ticket.findOne({where:{ticket_number}});
+        res.json({ticket});
+    }
+
+})
+
 
 module.exports = router;
