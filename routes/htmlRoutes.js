@@ -8,6 +8,7 @@ router.get("/dashboard", auth, (req, res) => res.sendFile(path.join(__dirname, "
 router.get("/user/page2", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/page2.html")));
 router.get("/user/profile", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/profile.html")));
 router.get("/user/createticket", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/createTicket.html")));
+router.get("/user/ticket", auth, (req,res) => res.sendFile(path.join(__dirname, "../public/ticket.html")));
 
 // login and register forms view
 router.get("/", (req, res) => res.sendFile(path.join(__dirname, "../public/login.html")));
