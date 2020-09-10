@@ -13,6 +13,7 @@ router.post("/createticket", auth, (req, res) => {
     var m = new Date();    
     var ticket_number = user_id + m.getUTCFullYear().toString() + m.getUTCMonth().toString() + m.getUTCDate().toString()  + m.getHours().toString() + m.getUTCSeconds().toString(); 
     console.log(ticket_number);
+    var status = "open";
     if(!short_description || !long_description){
         res.status(400).send( {message: "Please fill out the entire form"} );
     }else{
@@ -20,7 +21,8 @@ router.post("/createticket", auth, (req, res) => {
             user_id,
             ticket_number,
             short_description,
-            long_description
+            long_description,
+            status,
         })
         .then(data => {
             const { ticket_number } = data;

@@ -16,6 +16,10 @@ module.exports = function (sequelize, DataTypes) {
         long_description: {
             type: DataTypes.TEXT,
             allowNull: false
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     })
 

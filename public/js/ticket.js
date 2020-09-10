@@ -5,11 +5,15 @@ const cdTimeline = document.querySelector(".cd-container");
 const ticketDetails = '';
 console.log(ticketNumber);
 
+let user = ''
 // Get current User and display email information.
 // Here you can display any User information coming from the server.
 fetch("/auth/user")
     .then(response => response.json())
-    .then(data => { userName.textContent = data.username[0].toUpperCase() + data.username.substring(1); })
+    .then(data => { 
+        userName.textContent = data.username[0].toUpperCase() + data.username.substring(1);
+        user = data.username[0].toUpperCase() + data.username.substring(1);
+     })
     .catch(err => console.log(err));
 
 fetch(`/api/ticketdetails/${ticketNumber}`)
@@ -45,9 +49,11 @@ const showDetails = (data) => {
     infoSpan.setAttribute('class', 'timeline-content-info-title');    
     infoSpan.innerHTML =`
         <i class="fa fa-certificate" aria-hidden="true"></i>
-            Submitted By: <br> Johnny <br><br>
+            Submitted By: <br> ${user} <br><br>
             Date Submitted: <br>${newDate}<br><br>
-            Ticket#:<br>${data.ticket.ticket_number}<br>
+            Ticket#:<br>${data.ticket.ticket_number}<br><br>
+            Status: <br>${data.ticket.status.toUpperCase()}
+            
      `
 
     const p = document.createElement("p");
