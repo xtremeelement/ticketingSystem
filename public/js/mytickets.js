@@ -29,8 +29,8 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
     
             if(item.status == "open"){
                 console.log(item);
-                var myDate = new Date(item.createdAt);
-                var newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
+                let myDate = new Date(item.createdAt);
+                let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
     
                 const newRow = document.createElement("tr");
                 const ticketNum = document.createElement("th");
@@ -67,8 +67,8 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
     
             if(item.status == "open"){
                 console.log(item);
-                var myDate = new Date(item.createdAt);
-                var newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
+                let myDate = new Date(item.createdAt);
+                let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
     
                 const newRow = document.createElement("tr");
                 const ticketNum = document.createElement("th");
@@ -105,8 +105,8 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
     
             if(item.status == "open"){
                 console.log(item);
-                var myDate = new Date(item.createdAt);
-                var newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
+                let myDate = new Date(item.createdAt);
+                let newDate = (myDate.getMonth() + 2) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
     
                 const newRow = document.createElement("tr");
                 const ticketNum = document.createElement("th");

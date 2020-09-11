@@ -26,8 +26,8 @@ fetch(`/api/ticketdetails/${ticketNumber}`)
 
 
 const showDetails = (data) => {
-    var myDate = new Date(data.ticket.createdAt);
-    var newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
+    let myDate = new Date(data.ticket.createdAt);
+    let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
 
     const timelineBlock = document.createElement("div");
     timelineBlock.setAttribute('class', 'cd-timeline-block');

@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
         // check if there are any empty fields
         if (!username || !email || !password || !passwordTwo) return res.status(400).json({ message: "Please fill all fields" });
         // check for correct email format
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (reg.test(email) == false) return res.status(400).json({ message: "Invalid email format" });
         // check for password length - al least 6 characters
         if (password.length < 6) return res.status(400).json({ message: "Password needs to be at least 6 characters" });
