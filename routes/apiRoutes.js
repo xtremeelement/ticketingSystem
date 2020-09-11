@@ -17,7 +17,7 @@ router.post("/createticket", auth, (req, res) => {
     if(!short_description || !long_description){
         res.status(400).send( {message: "Please fill out the entire form"} );
     }else{
-        
+
         db.Ticket.create({
             user_id,
             ticket_number,
@@ -45,6 +45,17 @@ router.get("/ticketdetails/:ticket_number", auth, async (req,res) => {
         res.json({ticket});
     }
 
+})
+
+router.get("/mytickets", auth, async (req,res) => {
+    const user_id = req.session.passport.user;
+    db.Ticket.findAll({
+        where: {
+            user_id
+        }
+    })
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
 })
 
 
