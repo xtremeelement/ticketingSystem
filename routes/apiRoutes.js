@@ -17,6 +17,7 @@ router.post("/createticket", auth, (req, res) => {
     if(!short_description || !long_description){
         res.status(400).send( {message: "Please fill out the entire form"} );
     }else{
+        
         db.Ticket.create({
             user_id,
             ticket_number,
