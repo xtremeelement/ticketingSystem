@@ -48,8 +48,12 @@ router.get("/mytickets", auth, async (req,res) => {
     const user_id = req.session.passport.user;
     db.Ticket.findAll({
         where: {
-            user_id
-        }
+            user_id            
+        },
+        order: [
+            ['createdAt', 'DESC']
+        ]
+        
     })
     .then(data => res.json(data))
     .catch(err => console.log(err));
