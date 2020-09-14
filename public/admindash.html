@@ -42,11 +42,18 @@
                 </nav>
             </div>
             <div class="col-md-4 text-right pt-2">
-                <a class="text-white pr-0 mr-3" href="/user/profile">
-                    <i class="fas fa-user-circle fa-2x text-white mt-1 mr-2 mb-2"></i>
-                    <span class="userName"></span>
-                </a>
-                    <a class="text-white pr-0 mr-3" href="/auth/logout">Logout</a>
+
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle fa-2x text-white mt-1 mr-2 mb-2"></i><span class="userName"></span>
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="/admin">Admin</a>
+                      <a class="dropdown-item" href="/user/profile">My Profile</a>
+                      <a class="dropdown-item" href="/auth/logout">Logout</a>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
