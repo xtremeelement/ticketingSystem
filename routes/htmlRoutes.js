@@ -12,7 +12,7 @@ router.get("/user/createticket", auth, (req, res) => res.sendFile(path.join(__di
 router.get("/user/ticket", auth, (req,res) => res.sendFile(path.join(__dirname, "../public/ticket.html")));
 
 // Admin routes
-router.get("/admin/", authrole, (req,res) => {
+router.get("/admin/", auth, authrole, (req,res) => {
     res.sendFile(path.join(__dirname, "../public/mytickets.html"));
 })
 

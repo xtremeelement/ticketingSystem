@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 // All routes start with: /auth
 // Route: /auth/register
 router.post("/register", async (req, res) => {
-
+    console.log(req.body);
     try {
         const { username, email, password, passwordTwo, role } = req.body;
         // check if there are any empty fields

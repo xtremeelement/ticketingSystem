@@ -23,6 +23,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
             divAlertReg.textContent = message;
             rowAlertReg.prepend(divAlertReg);
         }
-        }
-   
+    }
   });
