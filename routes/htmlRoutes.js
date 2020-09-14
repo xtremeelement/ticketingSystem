@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const path = require("path");
 const auth = require("../middleware/auth");
+const authrole = require("../middleware/authrole");
 
 
 // user authorized views - they all use the "auth" middleware
@@ -11,9 +12,8 @@ router.get("/user/createticket", auth, (req, res) => res.sendFile(path.join(__di
 router.get("/user/ticket", auth, (req,res) => res.sendFile(path.join(__dirname, "../public/ticket.html")));
 
 // Admin routes
-router.get("/admin/", auth, (req,res) => {
-    console.log(req.user[0].role);
-    res.redirect("/");
+router.get("/admin/", authrole, (req,res) => {
+    res.sendFile(path.join(__dirname, "../public/mytickets.html"));
 })
 
 // login and register forms view
