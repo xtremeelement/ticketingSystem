@@ -36,22 +36,26 @@ router.post("/register", async (req, res) => {
                 bcrypt.hash(password, salt, function (err, hash) {
                     if (err) throw err;
                     // save hashed password into dtaa base
-                    db.User.create({
-                        username,
-                        email,
-                        password: hash,
-                        role
-                    })
-                        .then(data => {
-                            const { id, email, username } = data;
-                            res.json({
+                    db.User.create(
+                        {
+                            username,
+                            email,
+                            password: hash,
+                            role
+                        }
+                    )
+                    .then(data => {
+                        const { id, email, username } = data;
+                        res.json(
+                            {
                                 id,
                                 email,
                                 username,
                                 role
-                            });
-                        })
-                        .catch(err => console.log(err));
+                            }
+                        );
+                    })
+                    .catch(err => console.log(err));
                 });
             });
         }

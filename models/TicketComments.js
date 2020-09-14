@@ -1,7 +1,7 @@
 
 module.exports = function (sequelize, DataTypes) {
-    let Ticket = sequelize.define("Ticket", {
-        user_id: {
+    let Ticketcomments = sequelize.define("Ticketcomments", {
+        ticket_id: {
             type: DataTypes.INTEGER,
             allowNull: false,            
         },
@@ -9,23 +9,15 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        short_description: {
+        comment: {
             type: DataTypes.STRING,
             allowNull: false,            
         },
-        long_description: {
+        user_id: {
             type: DataTypes.TEXT,
             allowNull: false
-        },
-        status: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        category: {
-            type: DataTypes.STRING,
-            alloNull: false
-        }
+        },        
     })
 
-    return Ticket;
+    return Ticketcomments;
 }

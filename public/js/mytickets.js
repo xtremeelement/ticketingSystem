@@ -28,7 +28,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
         openedTickets.forEach(item => {
     
             if(item.status == "open"){
-                console.log(item);
+                
                 let myDate = new Date(item.createdAt);
                 let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
     
@@ -36,6 +36,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 const ticketNum = document.createElement("th");
                 const description = document.createElement("td");
                 const date = document.createElement("td");
+                const category = document.createElement("td");
                 const button = `
                 <td><a href="/user/ticket?ticket=${item.ticket_number}" type="button" class="btn btn-light">View Ticket</a></td>
                 `
@@ -43,18 +44,16 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 ticketNum.textContent = item.ticket_number;
                 description.textContent = item.short_description;
                 date.textContent = newDate;
+                category.textContent = item.category;
     
                 newRow.appendChild(ticketNum);
-                console.log('1')
-                newRow.appendChild(description);
-                console.log('2')
-                newRow.appendChild(date);
-                console.log('3')
-                newRow.innerHTML += button;
-                console.log('4')
+                newRow.appendChild(description);                
+                newRow.appendChild(date);                
+                newRow.appendChild(category);
+                newRow.innerHTML += button;                
                 console.log(openedList);
                 openedList.appendChild(newRow);
-                console.log('5')
+                
             }
         });
     }
@@ -66,7 +65,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
         pendingTickets.forEach(item => {
     
             if(item.status == "open"){
-                console.log(item);
+                
                 let myDate = new Date(item.createdAt);
                 let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
     
@@ -74,6 +73,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 const ticketNum = document.createElement("th");
                 const description = document.createElement("td");
                 const date = document.createElement("td");
+                const category = document.createElement("td");
                 const button = `
                 <td><a href="/user/ticket?ticket=${item.ticket_number}" type="button" class="btn btn-light">View Ticket</a></td>
                 `
@@ -81,18 +81,16 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 ticketNum.textContent = item.ticket_number;
                 description.textContent = item.short_description;
                 date.textContent = newDate;
+                category.textContent = item.category;
     
-                newRow.appendChild(ticketNum);
-                console.log('1')
-                newRow.appendChild(description);
-                console.log('2')
-                newRow.appendChild(date);
-                console.log('3')
-                newRow.innerHTML += button;
-                console.log('4')
+                newRow.appendChild(ticketNum);                
+                newRow.appendChild(description);                
+                newRow.appendChild(date);                
+                newRow.appendChild(category);
+                newRow.innerHTML += button;                
                 console.log(openedList);
                 inProgressList.appendChild(newRow);
-                console.log('5')
+                
             }
         });
     }
@@ -104,7 +102,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
         closedTickets.forEach(item => {
     
             if(item.status == "open"){
-                console.log(item);
+                
                 let myDate = new Date(item.createdAt);
                 let newDate = (myDate.getMonth() + 2) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
     
@@ -112,6 +110,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 const ticketNum = document.createElement("th");
                 const description = document.createElement("td");
                 const date = document.createElement("td");
+                const category = document.createElement("td");
                 const button = `
                 <td><a href="/user/ticket?ticket=${item.ticket_number}" type="button" class="btn btn-light">View Ticket</a></td>
                 `
@@ -119,18 +118,16 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 ticketNum.textContent = item.ticket_number;
                 description.textContent = item.short_description;
                 date.textContent = newDate;
+                category.textContent = item.category;
     
-                newRow.appendChild(ticketNum);
-                console.log('1')
-                newRow.appendChild(description);
-                console.log('2')
-                newRow.appendChild(date);
-                console.log('3')
-                newRow.innerHTML += button;
-                console.log('4')
+                newRow.appendChild(ticketNum);                
+                newRow.appendChild(description);                
+                newRow.appendChild(date);                
+                newRow.appendChild(category);
+                newRow.innerHTML += button;                
                 console.log(openedList);
                 closedList.appendChild(newRow);
-                console.log('5')
+                
             }
         });
     }

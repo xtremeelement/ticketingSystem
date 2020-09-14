@@ -6,14 +6,14 @@ router.post("/createticket", auth, (req, res) => {
     try{
 
         const user_id = req.session.passport.user;
-        
-        const {short_description, long_description} = req.body;
+        console.log(req.body)
+        const {short_description, long_description, category} = req.body;
         
         let m = new Date();    
         let ticket_number = user_id + m.getUTCFullYear().toString() + (m.getUTCMonth()+ 1).toString() + m.getUTCDate().toString()  + m.getHours().toString() + m.getUTCSeconds().toString(); 
         
         let status = "open";
-        if(!short_description || !long_description){
+        if(!short_description || !long_description || !category){
             res.status(400).send( {message: "Please fill out the entire form"} );
         }else{
             db.Ticket.create({
@@ -22,6 +22,7 @@ router.post("/createticket", auth, (req, res) => {
                 short_description,
                 long_description,
                 status,
+                category
             })
             .then(data => {
                 const { ticket_number } = data;

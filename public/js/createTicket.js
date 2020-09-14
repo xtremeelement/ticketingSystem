@@ -1,10 +1,11 @@
 const userName = document.querySelector(".userName");
 const submitTicket = document.querySelector("#submitTicket");
 const alertNotification = document.querySelector(".alert_notification");
-const shortDesc = document.querySelector("#input_short_description");
-const longDesc = document.querySelector("#input_long_description");
 const divContainer = document.createElement('div');
 const divAlert = document.createElement("div");
+const short_desc = document.querySelector("#input_short_description");
+const long_desc = document.querySelector("#input_long_description");
+const cat = document.querySelector("#ticketCategory");
 
 fetch("/auth/user")
     .then(response => response.json())
@@ -13,10 +14,14 @@ fetch("/auth/user")
 
 const createTicket= async (e) =>{
     e.preventDefault();
+    const short_description = document.querySelector("#input_short_description").value;
+    const long_description = document.querySelector("#input_long_description").value;
+    const category = document.querySelector("#ticketCategory").value;
     
     const ticketObject ={
-        short_description: shortDesc.value,
-        long_description: longDesc.value,
+        short_description,
+        long_description,
+        category
     }
     console.log(ticketObject)
     const response = await fetch("/api/createticket", {
@@ -72,8 +77,9 @@ const createTicket= async (e) =>{
         divAlert.appendChild(alertButton);
         alertNotification.append(divAlert);
 
-        shortDesc.value = "";
-        longDesc.value = "";
+        short_desc.value = "";
+        long_desc.value = "";
+        cat.value = "Choose..."
     }    
 }
 
