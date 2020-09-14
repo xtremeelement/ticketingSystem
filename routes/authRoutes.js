@@ -9,7 +9,7 @@ const auth = require("../middleware/auth");
 router.post("/register", async (req, res) => {
 
     try {
-        const { username, email, password, passwordTwo } = req.body;
+        const { username, email, password, passwordTwo, role } = req.body;
         // check if there are any empty fields
         if (!username || !email || !password || !passwordTwo) return res.status(400).json({ message: "Please fill all fields" });
         // check for correct email format
@@ -39,14 +39,16 @@ router.post("/register", async (req, res) => {
                     db.User.create({
                         username,
                         email,
-                        password: hash
+                        password: hash,
+                        role
                     })
                         .then(data => {
                             const { id, email, username } = data;
                             res.json({
                                 id,
                                 email,
-                                username
+                                username,
+                                role
                             });
                         })
                         .catch(err => console.log(err));

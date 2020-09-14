@@ -10,6 +10,12 @@ router.get("/user/profile", auth, (req, res) => res.sendFile(path.join(__dirname
 router.get("/user/createticket", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/createTicket.html")));
 router.get("/user/ticket", auth, (req,res) => res.sendFile(path.join(__dirname, "../public/ticket.html")));
 
+// Admin routes
+router.get("/admin/", auth, (req,res) => {
+    console.log(req.user[0].role);
+    res.redirect("/");
+})
+
 // login and register forms view
 router.get("/", (req, res) => res.sendFile(path.join(__dirname, "../public/login.html")));
 router.get("/register", (req, res) => res.sendFile(path.join(__dirname, "../public/register.html")));

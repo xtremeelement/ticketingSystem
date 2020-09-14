@@ -29,7 +29,7 @@ passport.use(new LocalStrategy({ usernameField: 'username' }, (username, passwor
 // passport boiler plate to serialize and deserialize user
 
 passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user.id, user.role);
 });
 
 passport.deserializeUser(async function (id, done) {
