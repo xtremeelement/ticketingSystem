@@ -38,7 +38,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
             divAlertReg.setAttribute("class", "alert alert-danger");
             divAlertReg.setAttribute("role", "alert");
             divAlertReg.textContent = message;
-            rowAlertReg.prepend(divAlertReg);
+            
+
+            const alertButton = document.createElement("button");
+            alertButton.setAttribute('type','button');
+            alertButton.setAttribute('class','close');
+            alertButton.setAttribute('data-dismiss', 'alert');
+            alertButton.setAttribute('aria-label', 'Close');
+            
+        
+            const closeAlert = document.createElement("span");
+            closeAlert.setAttribute('aria-hidden', 'true');
+            closeAlert.innerHTML = "&times;";
+        
+            alertButton.appendChild(closeAlert);   
+            divAlertReg.appendChild(alertButton);
+            rowAlertReg.append(divAlertReg);
         }
     }
   });
