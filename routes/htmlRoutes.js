@@ -13,7 +13,7 @@ router.get("/user/ticket", auth, (req,res) => res.sendFile(path.join(__dirname, 
 
 // Admin routes
 router.get("/admin/", auth, authrole, (req,res) => {
-    res.sendFile(path.join(__dirname, "../public/mytickets.html"));
+    res.sendFile(path.join(__dirname, "../public/admindash.html"));
 })
 
 // login and register forms view

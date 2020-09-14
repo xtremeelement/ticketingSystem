@@ -9,8 +9,25 @@ const cat = document.querySelector("#ticketCategory");
 
 fetch("/auth/user")
     .then(response => response.json())
-    .then(data => { userName.textContent = data.username[0].toUpperCase() + data.username.substring(1); })
+    .then(data => { 
+        userName.textContent = data.username[0].toUpperCase() + data.username.substring(1); 
+        isAdmin(data);
+    })
     .catch(err => console.log(err));
+
+const isAdmin = user => {
+    if(user.role == "admin"){
+        const adminPrepend = document.querySelector(".dropdown-menu");
+
+        const adminLink = document.createElement("a");
+        adminLink.setAttribute("href", "/admin");
+        adminLink.setAttribute("class", "dropdown-item");
+        adminLink.textContent = "Admin";
+
+        // adminPrepend.appendChild(adminLink);
+        adminPrepend.insertBefore(adminLink, adminPrepend.firstChild)
+    }
+}   
 
 const createTicket= async (e) =>{
     e.preventDefault();
@@ -82,5 +99,7 @@ const createTicket= async (e) =>{
         cat.value = "Choose..."
     }    
 }
+
+
 
 submitTicket.addEventListener("click", createTicket); 
