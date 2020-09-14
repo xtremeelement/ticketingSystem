@@ -13,19 +13,23 @@ fetch("/auth/user")
     .then(data => { 
         userName.textContent = data.username[0].toUpperCase() + data.username.substring(1);
         user = data.username[0].toUpperCase() + data.username.substring(1);
+        fetchTicket(user);
      })
     .catch(err => console.log(err));
 
-fetch(`/api/ticketdetails/${ticketNumber}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);        
-        showDetails(data);
-    })
-    .catch(err => console.log(err));
+const fetchTicket= user => {
+
+    fetch(`/api/ticketdetails/${ticketNumber}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);        
+            showDetails(data, user);
+        })
+        .catch(err => console.log(err));
+}
 
 
-const showDetails = (data) => {
+const showDetails = (data, user) => {
     let myDate = new Date(data.ticket.createdAt);
     let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
 
