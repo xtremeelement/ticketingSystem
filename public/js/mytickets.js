@@ -50,8 +50,8 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 newRow.appendChild(description);                
                 newRow.appendChild(date);                
                 newRow.appendChild(category);
-                newRow.innerHTML += button;                
-                console.log(openedList);
+                newRow.innerHTML += button;     
+                
                 openedList.appendChild(newRow);
                 
             }
@@ -87,8 +87,8 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 newRow.appendChild(description);                
                 newRow.appendChild(date);                
                 newRow.appendChild(category);
-                newRow.innerHTML += button;                
-                console.log(openedList);
+                newRow.innerHTML += button;               
+                
                 inProgressList.appendChild(newRow);
                 
             }
@@ -125,7 +125,7 @@ const displayTickets = (pendingTickets, openedTickets, closedTickets) => {
                 newRow.appendChild(date);                
                 newRow.appendChild(category);
                 newRow.innerHTML += button;                
-                console.log(openedList);
+                
                 closedList.appendChild(newRow);
                 
             }
