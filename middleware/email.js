@@ -13,31 +13,14 @@ const mailerConfig = {
 };
 let transporter = nodemailer.createTransport(mailerConfig);
 
-// let mailOptions = {
-//     from: mailerConfig.auth.user,
-//     to: 'brandond@shoot-straight.com',
-//     subject: 'Some Subject',
-//     html: `<body>` +
-//         `<p>Hey Dude</p>` +
-//         `</body>`
-// };
-
-// transporter.sendMail(mailOptions, function (error) {
-//     if (error) {
-//         console.log('error:', error);
-//     } else {
-//         console.log('good');
-//     }
-// });
 
 module.exports = {
     userAlert: async function(data){
         const {ticket_number, short_description, long_description, user_id} = data;
 
-
+        const user = await db.User.findOne({ where: { id: user_id } });
         
-        const user = await db.User.findOne({ where: { id: user_id } })
-        const { id, email, username, role } = user;
+        const { email, username } = user;
         
         console.log(data);
         let mailOptions = {
@@ -46,7 +29,8 @@ module.exports = {
             subject: `Ticket: ${ticket_number} has been created`,
             html: `<body>
                 <img src="https://shoot-straight.com/wp-content/uploads/2017/01/cropped-logo.png">
-                <h1>Your Ticket has been created</h1>
+                <h1>Hello, ${username}!</h1>
+                <h3>Your Ticket has been created</h3>
                 <p>Ticket Number: ${ticket_number}</p>
                 <p>Ticket Title: ${short_description}</p>
                 <p>Ticket Description: ${long_description}</p>
@@ -58,11 +42,11 @@ module.exports = {
             if (error) {
                 console.log('error:', error);
             } else {
-                console.log('good');
+                console.log('Email Sent to user');
             }
         });
     },
-    supportAlert: function(data){
+    supportAlert: async function(data){
         console.log(data);
         let mailOptions = {
             from: mailerConfig.auth.user,
@@ -81,7 +65,7 @@ module.exports = {
             }
         });
     },
-    userTicketUpdated: function(data){
+    userTicketUpdated: async function(data){
         console.log(data);
         let mailOptions = {
             from: mailerConfig.auth.user,
