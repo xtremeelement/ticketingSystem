@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const auth = require("../middleware/auth");
 const db = require("../models");
+const sendMail = require("../middleware/email");
 
 router.post("/createticket", auth, (req, res) => {
     try{
@@ -29,6 +30,7 @@ router.post("/createticket", auth, (req, res) => {
                 res.json({
                     ticket_number,                
                 });
+                sendMail.userAlert(data);
             })
             .catch(err => console.log(err));        
         }
@@ -74,6 +76,5 @@ router.get("/mytickets", auth, async (req,res) => {
         console.log(error)
     }
 })
-
 
 module.exports = router;
