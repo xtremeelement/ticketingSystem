@@ -2,6 +2,9 @@ const userName = document.querySelector(".userName");
 const divAlertReg = document.createElement("div");
 const urlParams = new URLSearchParams(window.location.search);
 const rowAlertReg = document.querySelector(".alertAppendReg");
+const inProgressTickets = document.querySelector("#in_progress_tickets");
+const openedTickets = document.querySelector("#opened_tickets");
+const closedTickets = document.querySelector("#closed_tickets");
 
 // Get current User and display email information.
 // Here you can display any User information coming from the server.
