@@ -48,7 +48,17 @@ router.get("/ticketdetails/:ticket_number", auth, async (req,res) => {
             res.status(400).send({message: "no ticket number provided"});
         }else{
             const ticket = await db.Ticket.findOne({where:{ticket_number}});
-            res.json({ticket});
+            let comments = await db.Ticketcomments.findAll({where:{ticket_number}});
+            
+            for (let index = 0; index < comments.length; index++) {
+                
+                const id = comments[index].user_id;
+                const user = await db.User.findOne({where: {id}});
+                console.log(user.username);
+                comments[index].setDataValue('username', `${user.username}`);
+                
+            }          
+            res.json({ticket, comments});
         }
     }
     catch(err){
@@ -77,4 +87,20 @@ router.get("/mytickets", auth, async (req,res) => {
     }
 })
 
+router.post("/submitcomment", auth, async (req,res)=>{
+    try {
+        console.log(req.body);       
+        const { comment, ticket_number, ticket_id, user_id } = req.body;
+        db.Ticketcomments.create({
+            comment,
+            ticket_number,
+            ticket_id,
+            user_id
+        })
+        .then(data => res.sendStatus(200))
+        .catch(err => console.log(err));
+    } catch (error) {
+        console.log(error);
+    }
+})
 module.exports = router;

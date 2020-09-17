@@ -3,6 +3,10 @@ const urlParams = new URLSearchParams(window.location.search);
 const ticketNumber = urlParams.get('ticket');
 const cdTimeline = document.querySelector(".cd-container");
 const ticketDetails = '';
+const commentArea = document.querySelector("#comment-area");
+let ticket_id = '';
+let user_id = '';
+
 console.log(ticketNumber);
 
 let user = ''
@@ -15,6 +19,7 @@ fetch("/auth/user")
         isAdmin(data);
         user = data.username[0].toUpperCase() + data.username.substring(1);
         fetchTicket(user);
+        fetchComments();
     })
     .catch(err => console.log(err));
 
@@ -45,6 +50,9 @@ const fetchTicket= user => {
 
 
 const showDetails = (data, user) => {
+    
+    ticket_id = data.ticket.id;
+    user_id = data.ticket.user_id;
     let myDate = new Date(data.ticket.createdAt);
     let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
 
@@ -90,3 +98,26 @@ const showDetails = (data, user) => {
     
 }
 
+const fetchComments = () => {
+    console.log("Comments Loaded");
+}
+
+const submitComment =async () => {
+    
+    const commentObject = {
+        comment: commentArea.value,
+        ticket_number: ticketNumber,
+        ticket_id,
+        user_id
+    }
+
+    fetch("/api/submitcomment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(commentObject)
+    })
+    .then(response => location.reload())    
+    .catch(err => console.log(err));    
+}
