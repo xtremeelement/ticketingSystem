@@ -19,7 +19,7 @@ fetch("/auth/user")
         isAdmin(data);
         user = data.username[0].toUpperCase() + data.username.substring(1);
         fetchTicket(user);
-        fetchComments();
+        
     })
     .catch(err => console.log(err));
 
@@ -44,6 +44,7 @@ const fetchTicket= user => {
         .then(data => {
             console.log(data);        
             showDetails(data, user);
+            fetchComments(data);
         })
         .catch(err => console.log(err));
 }
@@ -98,8 +99,35 @@ const showDetails = (data, user) => {
     
 }
 
-const fetchComments = () => {
-    console.log("Comments Loaded");
+const fetchComments = ({comments}) => {
+    console.log(comments)
+    comments.forEach(comment => {
+        let myDate = new Date(comment.createdAt);
+        let newDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear();
+        let username = comment.username[0].toUpperCase() + comment.username.substring(1);
+        let commentBlock = `
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img cd-picture">
+                </div>
+			    <div class="cd-timeline-content">				    
+                    <div class="timeline-content-info">
+                        <span class="timeline-content-info-title">
+                            <i class="fa fa-certificate" aria-hidden="true"></i>
+                            ${username}
+                        </span>
+                        <span class="timeline-content-info-date">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            ${newDate}
+                        </span>
+                    </div>
+				    <p>${comment.comment}</p>        
+			    </div> <!-- cd-timeline-content -->
+		    </div> <!-- cd-timeline-block -->
+		
+        `
+
+        cdTimeline.innerHTML += commentBlock;
+    });
 }
 
 const submitComment =async () => {

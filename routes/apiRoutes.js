@@ -48,7 +48,12 @@ router.get("/ticketdetails/:ticket_number", auth, async (req,res) => {
             res.status(400).send({message: "no ticket number provided"});
         }else{
             const ticket = await db.Ticket.findOne({where:{ticket_number}});
-            let comments = await db.Ticketcomments.findAll({where:{ticket_number}});
+            let comments = await db.Ticketcomments.findAll({
+                where:{ticket_number},
+                order:[
+                    ["createdAt", 'ASC']
+                ]
+            });
             
             for (let index = 0; index < comments.length; index++) {
                 
