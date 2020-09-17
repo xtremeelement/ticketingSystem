@@ -6,6 +6,9 @@ const ticketDetails = '';
 const commentArea = document.querySelector("#comment-area");
 let ticket_id = '';
 let user_id = '';
+const submitCommentBtn = document.querySelector("#submitComment");
+
+
 
 console.log(ticketNumber);
 
@@ -130,8 +133,8 @@ const fetchComments = ({comments}) => {
     });
 }
 
-const submitComment =async () => {
-    
+const submitComment = async (e) => {
+    e.preventDefault();
     const commentObject = {
         comment: commentArea.value,
         ticket_number: ticketNumber,
@@ -149,3 +152,5 @@ const submitComment =async () => {
     .then(response => location.reload())    
     .catch(err => console.log(err));    
 }
+
+submitCommentBtn.addEventListener("click", submitComment);
